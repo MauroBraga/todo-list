@@ -20,16 +20,48 @@ export default function Home(){
 
                 <TextInput 
                     style={styles.input}
-                    placeholder="Nome do participante"
+                    placeholder="Adicione uma nova tarefa"
                     placeholderTextColor="#6B6B6B"
                 />
 
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>
-                        +
-                    </Text>
+                <TouchableOpacity 
+                    style={styles.button}>
+                    <Image
+                    accessibilityLabel='Todo'
+                    style={styles.image}
+                    source={require('../../../assets/trash.png')}
+                    />
                 </TouchableOpacity>    
 
+            </View>
+            <View
+                style={styles.totais}>
+                <View
+                    style={styles.totalCriado}>
+                    <Text style={styles.totaisCriadas}>Criadas </Text>
+                    <Text style={styles.totaisValor}> 0</Text>    
+                </View>    
+                <View
+                style={styles.totalConcluido}>
+                    <Text style={styles.totaisConcluidas}>Concluídas </Text>
+                    <Text style={styles.totaisValor}> 0</Text>
+                </View>
+                        
+            </View>
+
+            <View style={styles.listEmpty}>
+                <Image
+                        accessibilityLabel='Todo'
+                        style={styles.image}
+                        source={require('../../../assets/Clipboard.png')}
+                        />
+                <Text style={styles.listEmptyText}>
+                    Você ainda não tem tarefas cadastradas 
+                </Text>
+
+                <Text style={styles.listEmptyText}>
+                    Crie tarefas e organize seus itens 
+                </Text>
             </View>
             
             

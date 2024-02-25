@@ -6,8 +6,7 @@ export const styles = StyleSheet.create({
         backgroundColor: '#131016',
         padding: 24
       },
-    title:{
-        flex: 1,
+        title:{
         marginTop: 56,
         width:'100%',
         alignItems:'center'    
@@ -17,11 +16,68 @@ export const styles = StyleSheet.create({
         resizeMode: 'stretch',
     },
     form: {
-
+        width: '100%',
+        flexDirection: 'row',
+        marginTop: 36,
+        marginBottom: 42
     },
     input:{
-
+      flex: 1,
+      height: 56,
+      backgroundColor: '#1F1E25',
+      borderRadius: 5,
+      color: '#FFFF',
+      padding: 16,
+      fontSize: 16,
+      marginRight: 5
     },
-    button:{},
-    buttonText:{}  
+    button:{
+      color: '#FFF',
+      fontSize: 24
+    },
+    buttonText:{
+       color: '#FFF',
+      fontSize: 24
+    },  
+    totais:{
+        flex:1,
+        flexDirection:"row",
+        justifyContent:'space-between',
+        maxHeight:19,
+      
+    },
+    totalCriado:{
+        flex:1,
+        flexDirection:'row',
+        justifyContent:'flex-start'
+    },
+    totalConcluido:{
+        flex:1,
+        flexDirection:'row',
+        justifyContent:'flex-end'
+    },
+    totaisCriadas:{
+        color:'#4EA8DE'
+       
+    },
+    totaisValor:{
+        color:'#fff',
+        borderColor:'#333'
+    },
+    totaisConcluidas:{
+        color:'#8284FA',
+       
+    },
+    listEmpty:{
+        flex:1,
+        width:'100%',
+        alignItems:'center',
+        marginTop:20 
+    },
+    listEmptyText:{
+        color: '#FFF',
+        marginTop: 16,
+        fontSize: 14,
+        textAlign: 'center'
+    }
 })
