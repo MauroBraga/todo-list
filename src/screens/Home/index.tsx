@@ -18,14 +18,12 @@ export default function Home(){
             <View
                 style={styles.form}>
 
-                <TextInput 
-                    style={styles.input}
+                <TextInput  style={styles.input}
                     placeholder="Adicione uma nova tarefa"
                     placeholderTextColor="#6B6B6B"
                 />
 
-                <TouchableOpacity 
-                    style={styles.button}>
+                <TouchableOpacity  style={styles.button}>
                     <Image
                     accessibilityLabel='Todo'
                     style={styles.image}

@@ -43,7 +43,7 @@ export const styles = StyleSheet.create({
         flex:1,
         flexDirection:"row",
         justifyContent:'space-between',
-        maxHeight:19,
+        maxHeight:20,
       
     },
     totalCriado:{
@@ -62,7 +62,9 @@ export const styles = StyleSheet.create({
     },
     totaisValor:{
         color:'#fff',
-        borderColor:'#333'
+        borderColor:'#333',
+        borderRadius:5
+
     },
     totaisConcluidas:{
         color:'#8284FA',
@@ -72,12 +74,15 @@ export const styles = StyleSheet.create({
         flex:1,
         width:'100%',
         alignItems:'center',
-        marginTop:20 
+        marginTop:20 ,
+        padding:30,
+        borderTopColor:'#333333',
+        borderTopWidth:1
     },
     listEmptyText:{
-        color: '#FFF',
+        color: '#808080',
         marginTop: 16,
         fontSize: 14,
         textAlign: 'center'
-    }
+    },
 })
