@@ -1,9 +1,13 @@
-import { Text, View,Image,TouchableOpacity,TextInput} from 'react-native';
+import { Text, View,Image,TouchableOpacity,TextInput, FlatList} from 'react-native';
 import { styles } from './styles';
+import Task from '../components/Task';
 
 
 export default function Home(){
-
+    const tasks = ['1','2','2','2','2','2']
+    const concluidas = 2
+    
+    
     return(
         <View style={styles.container}>
             
@@ -25,9 +29,9 @@ export default function Home(){
 
                 <TouchableOpacity  style={styles.button}>
                     <Image
-                    accessibilityLabel='Todo'
+                    accessibilityLabel='Adicioar'
                     style={styles.image}
-                    source={require('../../../assets/trash.png')}
+                    source={require('../../../assets/add.png')}
                     />
                 </TouchableOpacity>    
 
@@ -37,30 +41,42 @@ export default function Home(){
                 <View
                     style={styles.totalCriado}>
                     <Text style={styles.totaisCriadas}>Criadas </Text>
-                    <Text style={styles.totaisValor}> 0</Text>    
+                    <Text style={styles.totaisValor}> {tasks.length}</Text>    
                 </View>    
                 <View
                 style={styles.totalConcluido}>
                     <Text style={styles.totaisConcluidas}>Concluídas </Text>
-                    <Text style={styles.totaisValor}> 0</Text>
+                    <Text style={styles.totaisValor}> {concluidas}</Text>
                 </View>
                         
             </View>
 
-            <View style={styles.listEmpty}>
-                <Image
-                        accessibilityLabel='Todo'
-                        style={styles.image}
-                        source={require('../../../assets/Clipboard.png')}
-                        />
-                <Text style={styles.listEmptyText}>
-                    Você ainda não tem tarefas cadastradas 
-                </Text>
+            <FlatList 
+                data={tasks}
+                keyExtractor={item => item}
+                renderItem={ ({item}) =>(
+                    <Task />
+                )}
+                showsVerticalScrollIndicator={false}
+                ListEmptyComponent={() => (
+                     <View style={styles.listEmpty}>
+                     <Image
+                             accessibilityLabel='Todo'
+                             style={styles.image}
+                             source={require('../../../assets/Clipboard.png')}
+                             />
+                     <Text style={styles.listEmptyText}>
+                         Você ainda não tem tarefas cadastradas 
+                     </Text>
+     
+                     <Text style={styles.listEmptyText}>
+                         Crie tarefas e organize seus itens 
+                     </Text>
+                     </View>
+                )}
+            />
 
-                <Text style={styles.listEmptyText}>
-                    Crie tarefas e organize seus itens 
-                </Text>
-            </View>
+           
             
             
         </View>
