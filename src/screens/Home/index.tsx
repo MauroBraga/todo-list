@@ -1,12 +1,46 @@
-import { Text, View,Image,TouchableOpacity,TextInput, FlatList} from 'react-native';
+import { Text, View,Image,TouchableOpacity,TextInput, FlatList, Alert} from 'react-native';
 import { styles } from './styles';
 import Task from '../components/Task';
+import { useState } from 'react';
+
+export interface ITask {
+    id:number,
+    texto:string,
+    check:false
+}
 
 
 export default function Home(){
-    const tasks = ['1','2','2','2','2','2']
-    const concluidas = 2
     
+    const [tasks, setTasks] = useState<ITask[]>([]); 
+    const [taskTexto, setTaskTexto] = useState<string>(''); 
+    const [concluidas, setConcluidas] = useState<number>(0);
+
+    function handleParticipantAdd(){
+        
+        if(taskTexto===''){
+            return Alert.alert("Task","Campo Tarefa está vazio")
+        }
+       var id = tasks.length +1;  
+       setTasks(p => [...p, {id,texto:taskTexto,check:false}]);
+       setTaskTexto(''); 
+    }
+
+    function handletRemove(task:ITask){
+        Alert.alert("Remover", `Remover a tarefa ?`, [
+            {
+              text: 'Sim',
+              onPress: () => {
+                setTasks(prevState => prevState.filter(partipant => partipant.id !=task.id))
+                Alert.alert("Deletado!");
+              }
+            },
+            {
+              text: 'Não',
+              style: 'cancel'
+            }
+          ])
+    }
     
     return(
         <View style={styles.container}>
@@ -25,9 +59,12 @@ export default function Home(){
                 <TextInput  style={styles.input}
                     placeholder="Adicione uma nova tarefa"
                     placeholderTextColor="#6B6B6B"
+                    onChangeText={setTaskTexto}
                 />
 
-                <TouchableOpacity  style={styles.button}>
+                <TouchableOpacity  style={styles.button}
+                    onPress={handleParticipantAdd}
+                    >
                     <Image
                     accessibilityLabel='Adicioar'
                     style={styles.image}
@@ -53,9 +90,11 @@ export default function Home(){
 
             <FlatList 
                 data={tasks}
-                keyExtractor={item => item}
+                keyExtractor={item => item.texto}
                 renderItem={ ({item}) =>(
-                    <Task />
+                    <Task  key={item.texto} 
+                    task={item}
+                    onRemove={() => handletRemove(item)}/>
                 )}
                 showsVerticalScrollIndicator={false}
                 ListEmptyComponent={() => (
