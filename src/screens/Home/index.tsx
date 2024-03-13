@@ -6,7 +6,7 @@ import { useState } from 'react';
 export interface ITask {
     id:number,
     texto:string,
-    check:false
+    checked: false,
 }
 
 
@@ -22,12 +22,12 @@ export default function Home(){
             return Alert.alert("Task","Campo Tarefa está vazio")
         }
        var id = tasks.length +1;  
-       setTasks(p => [...p, {id,texto:taskTexto,check:false}]);
+       setTasks(p => [...p, {id,texto:taskTexto,checked:false}]);
        setTaskTexto(''); 
     }
 
     function handletRemove(task:ITask){
-        Alert.alert("Remover", `Remover a tarefa ?`, [
+        Alert.alert("Change", `Mudar status da tarefa ?`, [
             {
               text: 'Sim',
               onPress: () => {
@@ -42,6 +42,31 @@ export default function Home(){
           ])
     }
     
+    function handletChangeTask(task:ITask){
+        Alert.alert("Remover", `Remover a tarefa ?`, [
+            {
+              text: 'Sim',
+              onPress: () => {
+
+                const taskIndex = tasks.findIndex((t) => t.id === task.id)
+
+                const newTasks = [...tasks]
+
+                newTasks[taskIndex].checked = newTasks[taskIndex].checked ? false : true 
+
+                setTasks(newTasks)
+
+                Alert.alert("Alterado!");
+              }
+            },
+            {
+              text: 'Não',
+              style: 'cancel'
+            }
+          ])
+            
+    }
+
     return(
         <View style={styles.container}>
             
@@ -94,7 +119,8 @@ export default function Home(){
                 renderItem={ ({item}) =>(
                     <Task  key={item.texto} 
                     task={item}
-                    onRemove={() => handletRemove(item)}/>
+                    onRemove={() => handletRemove(item)}
+                    onChange={() => handletChangeTask(item)}/>
                 )}
                 showsVerticalScrollIndicator={false}
                 ListEmptyComponent={() => (
